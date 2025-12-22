@@ -8,7 +8,8 @@ class Player(CircleShape):
         super().__init__(x, y, constants.PLAYER_RADIUS)
         self.rotation = 0  # in degrees
         self.rotate = 0  # -1 for left, 1 for right, 0 for no rotation
-    
+        self.position = pygame.Vector2(x, y)
+        
     def update(self, dt):
         keys = pygame.key.get_pressed()
 
@@ -18,11 +19,13 @@ class Player(CircleShape):
             self.rotate = 1
         if not (keys[pygame.K_a] or keys[pygame.K_d]):
             self.rotate = 0
-
-        self.move(dt)
-
+        
         self.rotation += self.rotate * constants.PLAYER_TURN_SPEED * dt
-    
+        
+        print(f"Debug: rotation={self.rotation}, rotate={self.rotate}, dt={dt}")
+        
+        self.move(dt)
+        
     def move(self, dt):
         unit_vector = pygame.Vector2(0, 1)
         rotated_vector = unit_vector.rotate(self.rotation)
