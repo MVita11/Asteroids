@@ -22,8 +22,6 @@ class Player(CircleShape):
         
         self.rotation += self.rotate * constants.PLAYER_TURN_SPEED * dt
         
-        print(f"Debug: rotation={self.rotation}, rotate={self.rotate}, dt={dt}")
-        
         self.move(dt)
         
     def move(self, dt):
