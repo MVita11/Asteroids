@@ -14,16 +14,16 @@ def main():
     while True:
         log_state()
         dt = clock.tick(60) / 1000  # Delta time in seconds.
-        player.draw(screen)
+        
         
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return
         
-        
+        player.update(dt)
         screen.fill("black")
+        player.draw(screen)
         pygame.display.flip()
-
 
 if __name__ == "__main__":
     main()
