@@ -53,12 +53,25 @@ def main():
         # player.draw(screen)
 
         pygame.display.flip()
+        for shot in shots:
+            for asteroid in asteroids:
+                if shot.collides_with(asteroid):
+                    log_event("asteroid_hit")
+                    asteroid_children = asteroid.split()
+                    for child in asteroid_children:
+                        updatable.add(child)
+                        drawable.add(child)
+                        asteroids.add(child)
+                    asteroid.kill()
+                    shot.kill()
         
         for asteroid in asteroids:
             if player.collides_with(asteroid):
                 log_event("player_hit")
                 print("Game Over!")
                 sys.exit()
+        
+
 
 if __name__ == "__main__":
     main()
